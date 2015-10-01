@@ -38,6 +38,7 @@ void draw() {
   hero();
   dog();
   messages();
+  count = count +1; 
 
 }
 
@@ -98,10 +99,12 @@ void messages() {
 //// ACTION:  move (x,y) coordinates of hero & dog; show them.
 
 void hero() {
-text( "Vienna", 200, 200 );
+
   
  fill(69,185,142);                    //body's color
  rect( x,y-5, 40,80 );               // body
+
+
  fill(250,210,172);                  //head color
  ellipse(x+18,y-50,50,70);           //head
  fill(250,210,172);                  //neck color
@@ -128,6 +131,8 @@ text( "Vienna", 200, 200 );
  ellipse(x+5, y+75,25,7);            // left shoe
  ellipse(x+35, y+75,25,7);           // right shoe
  
+ fill(255,255,0);
+ text( "Vienna", x+3,y+20 );
   
  
  // Vienna moves around
@@ -171,20 +176,37 @@ void dog() {
   fill(247,195,226);                         // mouth's color
   ellipse(dogX+40,dogY,7,5);                 // mouth
 
- // need help flipping the dog ***
- 
- if (count/30 % 2 == 0) {
-  strokeWeight(5);
-  stroke(95,62,21); 
-  line(dogX+10,dogY+5,dogX+10,dogY+20);
-  line(dogX-10,dogY+5,dogX-10,dogY+20);
- } else{
-  line(dogX,dogY-5,dogX,dogY-20+20);
-  line(dogX,dogY-5,dogX+10,dogY-20);
-  }
- strokeWeight(1);
-  
- text( "WOOF, WOOF!d!!", 150, 150 );
+   // need help flipping the dog ***
+   
+/*   
+   strokeWeight(5);
+   stroke(95,62,21); 
+   if (count/30 % 2 == 0) {
+      line(dogX+15,dogY+5, dogX+10,dogY+20);
+      line(dogX-15,dogY+5, dogX-20,dogY+20);
+   } else{
+      line(dogX+15,dogY+5, dogX+20,dogY+20);
+      line(dogX-15,dogY+5, dogX-5,dogY+20);
+   }
+   strokeWeight(1);
+*/
+
+   float leg1=dogX+15, leg2=dogX-20;
+   strokeWeight(5);
+   stroke(95,62,21); 
+   if (count/30 % 2 == 0) {
+      line(leg1,dogY+5, leg1-5,dogY+20);
+      line(leg2,dogY+5, leg2-5,dogY+20);
+   } else{
+      line(leg1,dogY+5, leg1+5,dogY+20);
+      line(leg2,dogY+5, leg2+10,dogY+20);
+   }
+   strokeWeight(1);
+
+
+    
+   fill(0);
+   text( "WOOF, WOOF!d!!", dogX+40,dogY-20 );
 }
 
 //////// HANDLERS:  mouse clicks, keys
